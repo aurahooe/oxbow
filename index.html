@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Oxbow</title>
+  <meta name="description" content="A quiet public river of notes. Turns with the hour." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="mast">
+    <a class="mark" href="#wall">
+      <span class="mark-dot"></span>
+      Oxbow
+    </a>
+    <nav class="nav">
+      <button type="button" data-go="wall">Wall</button>
+      <button type="button" data-go="desk">Desk</button>
+      <button type="button" data-go="gate" id="nav-auth">Sign in</button>
+    </nav>
+    <div class="clock" id="clock">
+      <span id="clock-time">—</span>
+      <span class="clock-sub" id="clock-left">next turn soon</span>
+    </div>
+  </header>
+  <main>
+    <section id="view-wall" class="view is-on">
+      <article class="hour-card" id="hour-card">
+        <p class="kicker"><span>This hour</span><span id="hour-key">—</span></p>
+        <h1 id="hour-headline">Loading the river…</h1>
+        <p class="lede" id="hour-blurb"></p>
+        <div class="featured" id="hour-featured" hidden></div>
+      </article>
+      <div class="rail-head">
+        <h2>On the wall</h2>
+        <p>Anything marked public lives here. Private slips stay in your desk.</p>
+      </div>
+      <div class="grid" id="wall"></div>
+    </section>
+    <section id="view-desk" class="view">
+      <div class="desk-wrap">
+        <header class="desk-head">
+          <h2>Your desk</h2>
+          <p id="desk-who">Sign in to keep a drawer.</p>
+        </header>
+        <form id="slip-form" class="composer" hidden>
+          <label>Title<input name="title" maxlength="120" required placeholder="A short line" /></label>
+          <label>Body<textarea name="body" maxlength="8000" required rows="7" placeholder="What you want to keep — or pin to the wall."></textarea></label>
+          <label class="check"><input type="checkbox" name="is_public" /> Pin this to the public wall</label>
+          <button type="submit">Save slip</button>
+        </form>
+        <div class="grid mine" id="mine"></div>
+      </div>
+    </section>
+    <section id="view-gate" class="view">
+      <div class="gate">
+        <h2 id="gate-title">Come in</h2>
+        <p class="muted">Email and a password. We keep a profile and every slip you write.</p>
+        <form id="auth-form">
+          <label>Email<input type="email" name="email" required autocomplete="email" /></label>
+          <label>Password<input type="password" name="password" required minlength="6" autocomplete="current-password" /></label>
+          <div class="row">
+            <button type="submit">Sign in</button>
+            <button type="button" id="signup">Create account</button>
+          </div>
+          <p class="form-msg" id="auth-msg"></p>
+        </form>
+        <button type="button" id="signout" class="ghost" hidden>Sign out</button>
+      </div>
+    </section>
+  </main>
+  <footer><p>Oxbow turns on the hour. Public slips are visible to anyone. Private ones are not.</p></footer>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
